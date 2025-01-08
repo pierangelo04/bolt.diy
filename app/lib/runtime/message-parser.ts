@@ -55,7 +55,8 @@ interface MessageState {
 function cleanoutMarkdownSyntax(content: string) {
   const codeBlockRegex = /^\s*```\w*\n([\s\S]*?)\n\s*```\s*$/;
   const match = content.match(codeBlockRegex);
-  console.log('matching', !!match, content);
+
+  // console.log('matching', !!match, content);
 
   if (match) {
     return match[1]; // Remove common leading 4-space indent
@@ -109,7 +110,6 @@ export class StreamingMessageParser {
               // Remove markdown code block syntax if present and file is not markdown
               if (!currentAction.filePath.endsWith('.md')) {
                 content = cleanoutMarkdownSyntax(content);
-                console.log('content after cleanup', content);
               }
 
               content += '\n';
